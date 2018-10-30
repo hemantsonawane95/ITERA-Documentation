@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="English" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="English" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CI/CD &mdash;   documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="HOW TO DEPLOY APPLICATIONS ON CONTAINER CLOUD" href="HOWTODEPLOYAPPLICATIONSONCONTAINERCLOUD.html" />
+    <link rel="prev" title="KUBERNETES AND CONTAINER CLOUD ARCHITECTURE" href="KUBERNETESANDCONTAINERCLOUDARCHITECTURE.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Itera.gif" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="INTRODUCTION.html">INTRODUCTION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HOWTOACCESSTHEENVIRONMENT.html">HOW TO ACCESS THE ENVIRONMENT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KUBERNETESANDCONTAINERCLOUDARCHITECTURE.html">KUBERNETES AND CONTAINER CLOUD ARCHITECTURE</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CI/CD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#jenkins">JENKINS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#jenkins-master">JENKINS MASTER</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jenkins-slave">JENKINS SLAVE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gitlab-and-docker-registry">GITLAB AND DOCKER REGISTRY</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="HOWTODEPLOYAPPLICATIONSONCONTAINERCLOUD.html">HOW TO DEPLOY APPLICATIONS ON CONTAINER CLOUD</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html"></a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>CI/CD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/CICD.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="ci-cd">
+<h1>CI/CD<a class="headerlink" href="#ci-cd" title="Permalink to this headline">¶</a></h1>
+<p>The CI/CD are the pillars of DevOps which improve collaboration between operation and development terms and enable the delivery of high quality software for continued success. A Docker registry is there in gitlab and it can be used for pipelines, kubernetes and many more automation process.</p>
+<p>With CI, developers frequently integrate their code into a common repository. Rather than building features in isolation and submitting each of them at the end of the cycle, they continuously build software work products several times on any given day. Every time the code is inputted, the system starts the compilation process, runs unit tests and other quality-related checks as needed. CI relies heavily on test suites and an automated test execution. When done correctly, it enables developers to perform frequent and iterative builds, and deal with bugs early in the lifecycle.</p>
+<p>CD executes a progressive set of test suites against every build and alerts the development team in case of a failure, which then rectifies it. In situations where there are no issues, CD conducts tests in a sequential manner. The end result is a build that is deployable and verifiable in an actual production environment. CD executes a progressive set of test suites against every build and alerts the development team in case of a failure, which then rectifies it. In situations where there are no issues, CD conducts tests in a sequential manner. The end result is a build that is deployable and verifiable in an actual production environment.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/JD.png"><img alt="JD.*" src="_images/JD.png" style="width: 100.0%; height: 350.0px;" /></a>
+</div>
+<div class="section" id="jenkins">
+<h2>JENKINS<a class="headerlink" href="#jenkins" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/Jenkins.png"><img alt="_images/Jenkins.png" src="_images/Jenkins.png" style="width: 100px; height: 100px;" /></a>
+</div>
+<p>Jenkins master is running in Docker Swarm on the CI/CD server. Jenkins uses a Master-Slave architecture to manage distributed builds. In this architecture, Master and Slave communicate through TCP/IP protocol.</p>
+<div class="section" id="jenkins-master">
+<h3>JENKINS MASTER<a class="headerlink" href="#jenkins-master" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">The Master's job is to handle:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Scheduling build jobs.</li>
+<li>Dispatching builds to the slaves for the actual execution.</li>
+<li>Monitor the slaves (possibly taking them online and offline as required).</li>
+<li>Recording and presenting the build results.</li>
+<li>A Master instance of Jenkins can also execute build jobs directly.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="jenkins-slave">
+<h3>JENKINS SLAVE<a class="headerlink" href="#jenkins-slave" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">A Slave is a Java executable that runs on a remote machine. Following are the characteristics of Jenkins Slaves:</p>
+<blockquote>
+<div><ul class="simple">
+<li>It hears requests from the Jenkins Master instance.</li>
+<li>The job of a Slave is to do as they are told to, which involves executing build jobs dispatched by the Master.</li>
+<li>It is possible to configure a job to always run on a particular Slave machine, or a particular type of Slave machine, or simply let Jenkins pick the next available Slave.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>It offers simple way to set up a continuous integration or continuous delivery working environment for almost any kind of coding languages and source code repositories using pipelines as well as other development tools. It can be easily setup and and configure via its web interface. Jenkins integrates almost every tool in CI/CD integration toolchain. It is also possible that jenkins can distribute the work across multiple machine easily. It also helps to build drives, test and deployment across multiple platforms faster : e.g. Docker image build, pipeline for deployment.</p>
+</div>
+</div>
+<div class="section" id="gitlab-and-docker-registry">
+<h2>GITLAB AND DOCKER REGISTRY<a class="headerlink" href="#gitlab-and-docker-registry" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/Gitlab.png"><img alt="_images/Gitlab.png" src="_images/Gitlab.png" style="width: 100px; height: 100px;" /></a>
+</div>
+<p>Gitlab is running in a container in Docker Swarm. Gitlab enables teams and team member to collaborate and work on various projects instead of managing multiple threads across disparate tools. It provides single data store, one user interface and one permission model by allowing teams to collaborate with the  flexible working environment to focus on software building quickly.</p>
+<p>With the help of gitlab it is easy to deploy cloud native applications such as kubernetes. The integration of both Kubernetes and Gitlab makes easy to create and deploy application on the top of Kubernetes.</p>
+<p>Gitlab is mainly used to host git repositories. There is also an integrated Docker registry. Users can connect/push/pull images in the Gitlab Docker registry using their Gitlab credentials.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/GD.png"><img alt="GD.*" src="_images/GD.png" style="width: 100.0%; height: 350.0px;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="HOWTODEPLOYAPPLICATIONSONCONTAINERCLOUD.html" class="btn btn-neutral float-right" title="HOW TO DEPLOY APPLICATIONS ON CONTAINER CLOUD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="KUBERNETESANDCONTAINERCLOUDARCHITECTURE.html" class="btn btn-neutral" title="KUBERNETES AND CONTAINER CLOUD ARCHITECTURE" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, ITERA
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
