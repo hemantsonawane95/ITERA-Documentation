@@ -1,0 +1,289 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="English" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="English" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>KUBERNETES AND CONTAINER CLOUD ARCHITECTURE &mdash;   documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="CI/CD" href="CICD.html" />
+    <link rel="prev" title="HOW TO ACCESS THE ENVIRONMENT" href="HOWTOACCESSTHEENVIRONMENT.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Itera.gif" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="INTRODUCTION.html">INTRODUCTION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HOWTOACCESSTHEENVIRONMENT.html">HOW TO ACCESS THE ENVIRONMENT</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">KUBERNETES AND CONTAINER CLOUD ARCHITECTURE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">OVERVIEW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#openstack-cloud-provider-for-kubernetes">OPENSTACK CLOUD PROVIDER FOR KUBERNETES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-monitoring-and-alerting">LOGGING, MONITORING AND ALERTING</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CICD.html">CI/CD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HOWTODEPLOYAPPLICATIONSONCONTAINERCLOUD.html">HOW TO DEPLOY APPLICATIONS ON CONTAINER CLOUD</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html"></a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>KUBERNETES AND CONTAINER CLOUD ARCHITECTURE</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/KUBERNETESANDCONTAINERCLOUDARCHITECTURE.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="kubernetes-and-container-cloud-architecture">
+<h1>KUBERNETES AND CONTAINER CLOUD ARCHITECTURE<a class="headerlink" href="#kubernetes-and-container-cloud-architecture" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>OVERVIEW<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Main goal of this architecture is to provide flexible infrastructure for container
+services. This goal is achieved by using Kubernetes as cornerstone. OpenStack
+Cinder for providing persistent storage. And Project Calico as robust networking
+solution.</p>
+<p>This architecture also includes CI/CD build around Jenkins tooling. Supported by
+GitLab and a Docker registry as storages of code and containers.
+Also this architecture is created to be portable and presents opportunities for
+re-using it's components buy higher level applications.</p>
+<ul>
+<li><p class="first">The Container Cloud is composed of 5 nodes</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Kubernetes cluster is installed on 3 of these nodes.</p>
+</li>
+<li><p class="first">The 2 other nodes host CI/CD services:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Gitlab : Docker registry and Git repositories hosting</li>
+<li>Jenkins: Pipelines for CI/CD</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/KDB.png"><img alt="KDB.*" src="_images/KDB.png" style="width: 100.0%; height: 350.0px;" /></a>
+</div>
+</div>
+<div class="section" id="openstack-cloud-provider-for-kubernetes">
+<h2>OPENSTACK CLOUD PROVIDER FOR KUBERNETES<a class="headerlink" href="#openstack-cloud-provider-for-kubernetes" title="Permalink to this headline">¶</a></h2>
+<p>Kubernetes provides automated container orchestration -- management of your machines and services for you -- improving your reliability and reducing the time and resources. In above architecture there aretwo components of OpenStack which interacts with Kubernetes: Octavia and Cinder which provides loadbalancing and PVC respectively over which virtual machines are created to deploy kubernetes on it. As soon as you have kubernetes you can start deploying applications on it.
+Cinder is a persistent block level storage which can be used with openstack compute instances. It manages the creation, attachment and detachment of block devices to the cloud servers. Cinder provides an API to attach/detach volume to Nova instances. With OpenStack as a cloud provider for Kubernetes, volumes are created directly by Kubernetes and automatically attached to the virtual machines of the Kubernetes cluster.</p>
+<p>Octavia is an open source, operator-scale load balancing solution designed to work with OpenStack. Octavia accomplishes its delivery of load balancing services by managing a fleet of virtual machines, containers, or bare metal servers  which it spins up on demand. Thank to Octavia, Kubernetes can expose services to the outside world using OpenStack floating IPs.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/Architecture.svg"><img alt="Architecture.*" src="_images/Architecture.svg" width="100%" /></a>
+</div>
+</div>
+<div class="section" id="logging-monitoring-and-alerting">
+<h2>LOGGING, MONITORING AND ALERTING<a class="headerlink" href="#logging-monitoring-and-alerting" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/GK.jpg"><img alt="_images/GK.jpg" src="_images/GK.jpg" style="width: 200px; height: 100px;" /></a>
+</div>
+<p>The Logging, Monitoring, and Alerting toolchain i.e (LMA), is the operational health and response monitoring solution of ITERA for the Kubernetes cluster.</p>
+<ul>
+<li><p class="first">The LMA stacks includes 2 dashboards:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Grafana allows to monitor your Kubernetes cluster performance. It includes 4 dashboards, Cluster, Node, Pod/Container and Deployment.The metrics collected are high-level cluster and node stats a          s well as lower level pod and container stats. Use the high-level metrics to alert on and the low-level metrics to troubleshoot.</li>
+<li>Kibana which is the UI companion of Elasticsearch, simplifying visualization and querying. Kibana also has its own dashboard similar like grafana. Kibana core ships with the classics: histogram,          line graphs, pie charts, sunbursts, and more. Plus, you can use Vega grammar to design your own visualizations. Kibana developer tools offer powerful ways to help developers interact with the El          astic Stack. With Console, you can bypass using curl from the terminal and tinker with your Elasticsearch data directly.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/GDB.png"><img alt="GDB.*" src="_images/GDB.png" style="width: 100.0%; height: 300.0px;" /></a>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="CICD.html" class="btn btn-neutral float-right" title="CI/CD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="HOWTOACCESSTHEENVIRONMENT.html" class="btn btn-neutral" title="HOW TO ACCESS THE ENVIRONMENT" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, ITERA
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

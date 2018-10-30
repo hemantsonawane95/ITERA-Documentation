@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="English" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="English" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HOW TO DEPLOY APPLICATIONS ON CONTAINER CLOUD &mdash;   documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="CI/CD" href="CICD.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html">
+          
+
+          
+            
+            <img src="_static/Itera.gif" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="INTRODUCTION.html">INTRODUCTION</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HOWTOACCESSTHEENVIRONMENT.html">HOW TO ACCESS THE ENVIRONMENT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="KUBERNETESANDCONTAINERCLOUDARCHITECTURE.html">KUBERNETES AND CONTAINER CLOUD ARCHITECTURE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CICD.html">CI/CD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">HOW TO DEPLOY APPLICATIONS ON CONTAINER CLOUD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-kubectl-and-kubernetes-api-directly">USING KUBECTL AND KUBERNETES API DIRECTLY</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-yaml-file">USING YAML FILE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-the-application-directly">RUN THE APPLICATION DIRECTLY</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-helm">USING HELM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-install-gogs-using-helm">EXAMPLE : INSTALL GOGS USING HELM</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#persistent-volumes-for-kubernetes">PERSISTENT VOLUMES FOR KUBERNETES</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html"></a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>HOW TO DEPLOY APPLICATIONS ON CONTAINER CLOUD</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/HOWTODEPLOYAPPLICATIONSONCONTAINERCLOUD.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="how-to-deploy-applications-on-container-cloud">
+<h1>HOW TO DEPLOY APPLICATIONS ON CONTAINER CLOUD<a class="headerlink" href="#how-to-deploy-applications-on-container-cloud" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="using-kubectl-and-kubernetes-api-directly">
+<h2>USING KUBECTL AND KUBERNETES API DIRECTLY<a class="headerlink" href="#using-kubectl-and-kubernetes-api-directly" title="Permalink to this headline">¶</a></h2>
+<p>Before deploying or running the application on container cloud you need to have kubernetes cluster deployed on the cloud environment. It is also necessary to configure kubectl command-line tool to communicate with kubernetes cluster. But you will already have kubernetes deployed on your cloud environment. So you don't need to be worry for that. As soon as you have your environment ready you can start application deployment process. There are two ways to deploy application on kubernetes cluster:</p>
+<div class="section" id="using-yaml-file">
+<h3>USING YAML FILE<a class="headerlink" href="#using-yaml-file" title="Permalink to this headline">¶</a></h3>
+<p>You can run an application by creating a Kubernetes Deployment object, and you can describe a Deployment in a YAML file. For example, this YAML file describes a Deployment that runs the nginx:1.7.9.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span> <span class="nv">apiVersion</span><span class="p p-Indicator">:</span> <span class="nv">apps/v1</span>
+     <span class="nv">kind</span><span class="p p-Indicator">:</span> <span class="nv">Deployment</span>
+     <span class="nv">metadata</span><span class="p p-Indicator">:</span>
+       <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">nginx-deployment</span>
+     <span class="nv">spec</span><span class="p p-Indicator">:</span>
+       <span class="nv">selector</span><span class="p p-Indicator">:</span>
+         <span class="nv">matchLabels</span><span class="p p-Indicator">:</span>
+           <span class="nv">app</span><span class="p p-Indicator">:</span> <span class="nv">nginx</span>
+       <span class="nv">replicas</span><span class="p p-Indicator">:</span> <span class="nv">2</span> <span class="c1"># tells deployment to run 2 pods matching the template</span>
+       <span class="nv">template</span><span class="p p-Indicator">:</span>
+         <span class="nv">metadata</span><span class="p p-Indicator">:</span>
+           <span class="nv">labels</span><span class="p p-Indicator">:</span>
+             <span class="nv">app</span><span class="p p-Indicator">:</span> <span class="nv">nginx</span>
+         <span class="nv">spec</span><span class="p p-Indicator">:</span>
+           <span class="nv">containers</span><span class="p p-Indicator">:</span>
+           <span class="nv">- name</span><span class="p p-Indicator">:</span> <span class="nv">nginx</span>
+             <span class="nv">image</span><span class="p p-Indicator">:</span> <span class="nv">nginx</span><span class="p p-Indicator">:</span><span class="nv">1.7.9</span>
+             <span class="nv">ports</span><span class="p p-Indicator">:</span>
+             <span class="nv">- containerPort</span><span class="p p-Indicator">:</span> <span class="nv">80</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+<p>Now to create deployment based on YAML file execute following commands in your terminal.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl apply -f https://k8s.io/examples/application/deployment.yaml
+</pre></div>
+</div>
+<p>To get the information about deployed application execute following command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl describe deployment nginx-deployment
+</pre></div>
+</div>
+<p>By executing the above command you will get similar output as given below. The describe command allows you to interrogate different kubernetes resources such as pods, deployments, and services at a deeperlevel.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">Name</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">nginx-deployment</span>
+<span class="l l-Scalar l-Scalar-Plain">Namespace</span><span class="p p-Indicator">:</span>    <span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="l l-Scalar l-Scalar-Plain">CreationTimestamp</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">Tue, 30 Aug 2016 18:11:37 -0700</span>
+<span class="l l-Scalar l-Scalar-Plain">Labels</span><span class="p p-Indicator">:</span>     <span class="l l-Scalar l-Scalar-Plain">app=nginx</span>
+<span class="l l-Scalar l-Scalar-Plain">Annotations</span><span class="p p-Indicator">:</span>    <span class="l l-Scalar l-Scalar-Plain">deployment.kubernetes.io/revision=1</span>
+<span class="l l-Scalar l-Scalar-Plain">Selector</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">app=nginx</span>
+<span class="l l-Scalar l-Scalar-Plain">Replicas</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">2 desired | 2 updated | 2 total | 2 available | 0 unavailable</span>
+<span class="l l-Scalar l-Scalar-Plain">StrategyType</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">RollingUpdate</span>
+<span class="l l-Scalar l-Scalar-Plain">MinReadySeconds</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">0</span>
+<span class="l l-Scalar l-Scalar-Plain">RollingUpdateStrategy</span><span class="p p-Indicator">:</span>  <span class="l l-Scalar l-Scalar-Plain">1 max unavailable, 1 max surge</span>
+<span class="l l-Scalar l-Scalar-Plain">Pod Template</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">Labels</span><span class="p p-Indicator">:</span>       <span class="l l-Scalar l-Scalar-Plain">app=nginx</span>
+  <span class="l l-Scalar l-Scalar-Plain">Containers</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">nginx</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">Image</span><span class="p p-Indicator">:</span>              <span class="l l-Scalar l-Scalar-Plain">nginx:1.7.9</span>
+    <span class="l l-Scalar l-Scalar-Plain">Port</span><span class="p p-Indicator">:</span>               <span class="l l-Scalar l-Scalar-Plain">80/TCP</span>
+    <span class="l l-Scalar l-Scalar-Plain">Environment</span><span class="p p-Indicator">:</span>        <span class="l l-Scalar l-Scalar-Plain">&lt;none&gt;</span>
+    <span class="l l-Scalar l-Scalar-Plain">Mounts</span><span class="p p-Indicator">:</span>             <span class="l l-Scalar l-Scalar-Plain">&lt;none&gt;</span>
+   <span class="l l-Scalar l-Scalar-Plain">Volumes</span><span class="p p-Indicator">:</span>             <span class="l l-Scalar l-Scalar-Plain">&lt;none&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">Conditions</span><span class="p p-Indicator">:</span>
+   <span class="l l-Scalar l-Scalar-Plain">Type          Status  Reason</span>
+   <span class="l l-Scalar l-Scalar-Plain">----          ------  ------</span>
+   <span class="l l-Scalar l-Scalar-Plain">Available     True    MinimumReplicasAvailable</span>
+   <span class="l l-Scalar l-Scalar-Plain">Progressing   True    NewReplicaSetAvailable</span>
+<span class="l l-Scalar l-Scalar-Plain">OldReplicaSets</span><span class="p p-Indicator">:</span>   <span class="l l-Scalar l-Scalar-Plain">&lt;none&gt;</span>
+<span class="l l-Scalar l-Scalar-Plain">NewReplicaSet</span><span class="p p-Indicator">:</span>    <span class="l l-Scalar l-Scalar-Plain">nginx-deployment-1771418926 (2/2 replicas created)</span>
+<span class="l l-Scalar l-Scalar-Plain">No events.</span>
+</pre></div>
+</div>
+<p>To get the status of deployment pods and to delete the deployment from kubernetes cluster execute following commands,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl get pods -l <span class="nv">app</span><span class="o">=</span>nginx
+
+$ kubectl delete deployment nginx-deployment
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-the-application-directly">
+<h3>RUN THE APPLICATION DIRECTLY<a class="headerlink" href="#run-the-application-directly" title="Permalink to this headline">¶</a></h3>
+<p>The second method of deploying application is very simple and a deployment is a logical reference to pods and their configurations.</p>
+<p>Create deployment by using kubectl create command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl create deployment nginx --image<span class="o">=</span>nginx
+</pre></div>
+</div>
+<p>And that's it you deployed an application on kubernetes cluster. To describe and check the status of deployment use commands from previous method 5.1. Make the deployment accessible via internet.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl create service nodeport nginx --tcp<span class="o">=</span><span class="m">80</span>:80
+</pre></div>
+</div>
+<p>This creates a public facing service on the host for the deployment. Because this is a NodePort service, Kubernetes will assign this service a port on the host machine in the 30000-32767 port range.
+It is also necessary to expose the deployment on the internet. Execute following command to expose the deployment.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl expose deployment/my-nginx
+</pre></div>
+</div>
+<p>So you are pretty much done with the deployment. Now, it's time to see on which port the service is running. To get the current services,</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl get svc
+</pre></div>
+</div>
+<p>You  will get the following result by executing the svc command  and will get on which port the service is running.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nginx        NodePort    <span class="m">10</span>.98.24.29   &lt;none&gt;        <span class="m">80</span>:32555/TCP   52s
+</pre></div>
+</div>
+<p>To see whether the deployment is running on the port just go to the IP of your cloud environment and use exposed port after the IP and there you go you will be redirected to your deployment page. There isanother way to see whether the deployment is exposed or not just by using curl command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ curl ip:32555  <span class="c1"># ip - ip of cloud environment</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="using-helm">
+<h2>USING HELM<a class="headerlink" href="#using-helm" title="Permalink to this headline">¶</a></h2>
+<p>Helm helps you manage Kubernetes applications. Helm Charts helps you define, install, and upgrade even the most complex Kubernetes application.
+Charts are easy to create, version, share, and publish.
+Use Helm to:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Find and use popular software packaged as Helm charts to run in Kubernetes</li>
+<li>Share your own applications as Helm charts</li>
+<li>Create reproducible builds of your Kubernetes applications</li>
+<li>Intelligently manage your Kubernetes manifest files</li>
+<li>Manage releases of Helm packages</li>
+</ul>
+</div></blockquote>
+<p>The example is given below about how to install application on kubernetes using helm:</p>
+<div class="section" id="example-install-gogs-using-helm">
+<h3>EXAMPLE : INSTALL GOGS USING HELM<a class="headerlink" href="#example-install-gogs-using-helm" title="Permalink to this headline">¶</a></h3>
+<p>Gogs is a painless self-hosted Git service : <a class="reference external" href="https://gogs.io/">https://gogs.io/</a></p>
+<p>An helm chart to install gogs exists and will be used to install Gogs in the Kubernetes cluster. The helm chart is not in the stable repository, it is instead located in the incubator.</p>
+<ol class="arabic simple">
+<li>Enable the incubator repository</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ helm repo add incubator https://kubernetes-charts-incubator.storage.googleapis.com/
+
+ <span class="s2">&quot;incubator&quot;</span> has been added to your repositories
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>Create a file gogs.yaml containing the following content :</li>
+</ol>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span> <span class="nv">persistence</span><span class="p p-Indicator">:</span>
+    <span class="nv">storageClass</span><span class="p p-Indicator">:</span> <span class="s">&#39;general&#39;</span>
+    <span class="nv">size</span><span class="p p-Indicator">:</span> <span class="nv">50Gi</span>
+  <span class="nv">postgresql</span><span class="p p-Indicator">:</span>
+   <span class="nv">persistence</span><span class="p p-Indicator">:</span>
+     <span class="nv">storageClass</span><span class="p p-Indicator">:</span> <span class="s">&#39;general&#39;</span>
+     <span class="nv">size</span><span class="p p-Indicator">:</span> <span class="nv">10Gi</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+<p>The storageClass general corresponds to Ceph RBD. The allocated volume for Gogs will be of 50 Gi.</p>
+<ol class="arabic simple" start="3">
+<li>Install Gogs with helm</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ helm install --name gogs-signals -f gogs.yaml incubator/gogs --namespace<span class="o">=</span>testing
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Check the result</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ kubectl get svc -n testing <span class="p">|</span> grep gogs
+
+gogs-signals-gogs        NodePort   <span class="m">10</span>.96.196.198 &lt;none&gt; <span class="m">80</span>:31465/TCP,22:32448/TCP
+gogs-signals-postgresql  ClusterIP  <span class="m">10</span>.96.118.4   &lt;none&gt;  <span class="m">5432</span>/TC
+</pre></div>
+</div>
+<p>Gogs was correctly installed on the top of the Kubernetes cluster. It is now possible to access the webui with the port 31465.</p>
+</div>
+</div>
+<div class="section" id="persistent-volumes-for-kubernetes">
+<h2>PERSISTENT VOLUMES FOR KUBERNETES<a class="headerlink" href="#persistent-volumes-for-kubernetes" title="Permalink to this headline">¶</a></h2>
+<p>The storage class standard was created in the Kubernetes cluster. It will create volumes from Cinder for Kubernetes. The volumes will be automatically created and attached to the virtual machines on the top of which Kubernetes is installed.</p>
+<p>Example of PVC for Kubernetes using the storage class standard:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span> <span class="nv">kind</span><span class="p p-Indicator">:</span> <span class="nv">PersistentVolumeClaim</span>
+  <span class="nv">apiVersion</span><span class="p p-Indicator">:</span> <span class="nv">v1</span>
+  <span class="nv">metadata</span><span class="p p-Indicator">:</span>
+    <span class="nv">name</span><span class="p p-Indicator">:</span> <span class="nv">task-pv-claim</span>
+  <span class="nv">spec</span><span class="p p-Indicator">:</span>
+    <span class="nv">storageClassName</span><span class="p p-Indicator">:</span> <span class="nv">standard</span>
+    <span class="nv">accessModes</span><span class="p p-Indicator">:</span>
+      <span class="nv">- ReadWriteOnce</span>
+    <span class="nv">resources</span><span class="p p-Indicator">:</span>
+      <span class="nv">requests</span><span class="p p-Indicator">:</span>
+        <span class="nv">storage</span><span class="p p-Indicator">:</span> <span class="nv">3Gi</span> <span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="CICD.html" class="btn btn-neutral" title="CI/CD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, ITERA
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
