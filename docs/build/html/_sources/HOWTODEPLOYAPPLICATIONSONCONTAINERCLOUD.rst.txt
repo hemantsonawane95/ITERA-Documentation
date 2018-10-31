@@ -19,7 +19,7 @@ You can run an application by creating a Kubernetes Deployment object, and you c
 
 .. code-block:: yaml
 
-   { apiVersion: apps/v1 
+   apiVersion: apps/v1 
 	kind: Deployment
 	metadata:
 	  name: nginx-deployment
@@ -37,7 +37,7 @@ You can run an application by creating a Kubernetes Deployment object, and you c
 	      - name: nginx
 		image: nginx:1.7.9
 		ports:
-		- containerPort: 80 }
+		- containerPort: 80
 
 Now to create deployment based on YAML file execute following commands in your terminal.
 
@@ -169,13 +169,13 @@ An helm chart to install gogs exists and will be used to install Gogs in the Kub
 
 .. code-block:: yaml
 
-   { persistence:
+   persistence:
        storageClass: 'general'
        size: 50Gi
      postgresql:
       persistence:
         storageClass: 'general'
-        size: 10Gi }
+        size: 10Gi
 
 The storageClass general corresponds to Ceph RBD. The allocated volume for Gogs will be of 50 Gi.
 
@@ -208,7 +208,7 @@ Example of PVC for Kubernetes using the storage class standard:
 
 .. code-block:: yaml
 
-   { kind: PersistentVolumeClaim  
+   kind: PersistentVolumeClaim  
      apiVersion: v1  
      metadata:  
        name: task-pv-claim  
@@ -218,4 +218,4 @@ Example of PVC for Kubernetes using the storage class standard:
          - ReadWriteOnce  
        resources:  
          requests:  
-           storage: 3Gi }
+           storage: 3Gi
